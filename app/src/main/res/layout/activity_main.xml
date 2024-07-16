@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/edtPrincipal"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="@string/inputPrincipal"
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="16dp"
+        android:autofillHints="creditCardNumber" />
+
+    <EditText
+        android:id="@+id/edtRate"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:autofillHints="creditCardNumber"
+        android:hint="@string/usuarioInput"
+        android:inputType="numberDecimal"
+        android:layout_below="@id/edtPrincipal"
+        android:layout_margin="16dp" />
+
+    <EditText
+        android:id="@+id/edtTempo"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:autofillHints="creditCardNumber"
+        android:hint="@string/inputTempo"
+        android:inputType="numberDecimal"
+        android:layout_below="@id/edtRate"
+        android:layout_margin="16dp" />
+
+    <Button
+        android:id="@+id/btnCalc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/botao"
+        android:layout_below="@id/edtTempo"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="16dp" />
+
+    <TextView
+        android:id="@+id/Tvresult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/resultado"
+        android:layout_below="@+id/btnCalc"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:layout_margin="16dp" />
+
+</RelativeLayout>

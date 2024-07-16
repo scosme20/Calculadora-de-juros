@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Calculadora</string>
+    <string name="botao">Calcular</string>
+    <string name="resultado">Resultado:</string>
+    <string name="usuarioInput">Taxa de juros:</string>
+    <string name="inputTempo">Tempo (anos):</string>
+    <string name="inputPrincipal">Principal</string>
+</resources>
