@@ -1,0 +1,58 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/edtPrincipal"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:hint="@string/inputPrincipal"
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="16dp"
+        android:autofillHints="creditCardNumber"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="1.0" />
+
+    <EditText
+        android:id="@+id/edtRate"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:autofillHints="creditCardNumber"
+        android:hint="@string/usuarioInput"
+        android:inputType="numberDecimal"
+        android:layout_margin="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtPrincipal"
+        app:layout_constraintWidth_percent="1.0" />
+
+    <EditText
+        android:id="@+id/edtTempo"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:autofillHints="creditCardNumber"
+        android:hint="@string/inputTempo"
+        android:inputType="numberDecimal"
+        android:layout_margin="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtRate"
+        app:layout_constraintWidth_percent="1.0" />
+
+    <Button
+        android:id="@+id/btnCalc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/botao"
+        android:layout_margin="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtTempo"
+        app:layout_constraintWidth_percent="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

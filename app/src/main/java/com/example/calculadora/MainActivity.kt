@@ -2,19 +2,16 @@ package com.example.calculadora
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import java.text.NumberFormat
-import java.util.Locale
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), InputFragment.OnCalculateListener {
+
+    private lateinit var resultFragment: ResultFragment
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,44 +23,26 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val edtPrincipal = findViewById<EditText>(R.id.edtPrincipal)
-        val edtJuro = findViewById<EditText>(R.id.edtRate)
-        val edtTempo = findViewById<EditText>(R.id.edtTempo)
-        val btnCalc = findViewById<Button>(R.id.btnCalc)
-        val tvResult = findViewById<TextView>(R.id.Tvresult)
+        val inputFragment = InputFragment()
+        inputFragment.setOnCalculateListener(this)
 
-        btnCalc.setOnClickListener {
-            val principalStr = edtPrincipal.text.toString()
-            val rateStr = edtJuro.text.toString()
-            val timeStr = edtTempo.text.toString()
+        resultFragment = ResultFragment()
 
-            Log.d("CalculationInput", "Principal: $principalStr, Rate: $rateStr, Time: $timeStr")
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container_input, inputFragment)
+            .replace(R.id.fragment_container_result, resultFragment)
+            .commit()
+    }
 
-            if (principalStr.isNotEmpty() && rateStr.isNotEmpty() && timeStr.isNotEmpty()) {
-                try {
-                    val principal = principalStr.toDouble()
-                    val rate = rateStr.toDouble()
-                    val time = timeStr.toDouble()
+    override fun onCalculate(principal: Double, rate: Double, time: Double) {
+        resultFragment.updateResult(principal, rate, time)
+    }
 
-                    Log.d("CalculationValues", "Principal: $principal, Rate: $rate, Time: $time")
-
-                    val interest = (principal * rate * time) / 100
-                    val totalAmount = principal + interest
-
-                    val result = "Juros: ${NumberFormat.getCurrencyInstance(Locale("pt", "BR")).format(interest)}\n" +
-                            "Total: ${NumberFormat.getCurrencyInstance(Locale("pt", "BR")).format(totalAmount)}"
-                    tvResult.text = result
-                } catch (e: NumberFormatException) {
-                    e.printStackTrace()
-                    Log.e("CalculationError", "Erro ao calcular os valores: ${e.message}")
-                    tvResult.text = "Erro ao calcular. Verifique os valores inseridos."
-                }
-            } else {
-                tvResult.text = "Por favor, insira todos os valores."
-            }
-        }
+    override fun onCalculateError(message: String) {
+        resultFragment.showError(message)
     }
 }
+
 
 
 
